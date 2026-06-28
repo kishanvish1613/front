@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaagrav Traders | Government Procurement & Multi-Category Supply Solutions</title>
+    <meta name="description" content="Jaagrav Traders - Your trusted partner for government procurement and multi-category supply solutions since 2015. Registered GeM supplier serving 500+ institutional clients across India.">
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+                        'display': ['"Playfair Display"', 'Georgia', 'serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'navy': {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9bb3c9',
+                            400: '#7a95b3',
+                            500: '#5c7a9a',
+                            600: '#486581',
+                            700: '#1a3a5c',
+                            800: '#0f2640',
+                            900: '#0a1929',
+                            950: '#061220',
+                        },
+                        'gold': {
+                            50: '#fdf8f0',
+                            100: '#f9eddb',
+                            200: '#f3dbb7',
+                            300: '#e8c97a',
+                            400: '#ddb44a',
+                            500: '#c8963e',
+                            600: '#a87832',
+                            700: '#8a5f2c',
+                            800: '#6f4d28',
+                            900: '#5a3f24',
+                        },
+                        'warm': {
+                            50: '#fefdfb',
+                            100: '#fdf8f0',
+                            200: '#faf0e0',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                        'dot-grid': "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='2' cy='2' r='1'/%3E%3Ccircle cx='12' cy='8' r='1'/%3E%3Ccircle cx='18' cy='14' r='1'/%3E%3Ccircle cx='8' cy='18' r='1'/%3E%3C/g%3E%3C/svg%3E\")",
+                        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'float-slow': 'float 8s ease-in-out 1s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2.5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --navy-800: #0f2640;
+            --navy-700: #1a3a5c;
+            --gold-400: #ddb44a;
+            --gold-500: #c8963e;
+        }
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c8963e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a87832;
+        }
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        /* Gold underline animation */
+        .gold-underline {
+            position: relative;
+        }
+        .gold-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c8963e;
+            transition: width 0.4s ease;
+        }
+        .gold-underline:hover::after {
+            width: 100%;
+        }
+        /* Gradient text */
+        .text-gradient {
+            background: linear-gradient(135deg, #ddb44a 0%, #c8963e 40%, #a87832 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        /* Hero overlay */
+        .hero-overlay {
+            background: linear-gradient(135deg,
+                    rgba(10, 25, 41, 0.92) 0%,
+                    rgba(15, 38, 64, 0.88) 40%,
+                    rgba(26, 58, 92, 0.85) 100%);
+        }
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        /* Fade in up animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Badge pulse */
+        .badge-pulse {
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(200, 150, 62, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 18px rgba(200, 150, 62, 0);
+            }
+        }
+        /* Image hover zoom */
+        .img-hover-zoom {
+            overflow: hidden;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.08);
+        }
+        /* Staggered animation delays */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+        .delay-500 {
+            transition-delay: 0.5s;
+        }
+        /* Soft glow */
+        .glow-gold {
+            box-shadow: 0 0 40px -10px rgba(200, 150, 62, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-400 bg-navy-900/95 backdrop-blur-md border-b border-white/5 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center shadow-lg shadow-gold-500/20 group-hover:shadow-gold-500/40 transition-all duration-300">
+                        <span class="text-white font-extrabold text-lg lg:text-xl font-display">JT</span>
+                    </div>
+                    <div>
+                        <span class="text-white font-bold text-lg lg:text-xl tracking-tight leading-tight block">JAAGRAV</span>
+                        <span class="text-gold-400 text-xs tracking-[0.25em] uppercase font-semibold">Traders</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="px-3 py-2 text-sm font-medium text-white/80 hover:text-gold-400 transition-colors duration-200 gold-underline">Home</a>
+                    <a href="#about" class="px-3 py-2 text-sm font-medium text-white/80 hover:text-gold-400 transition-colors duration-200 gold-underline">About</a>
+                    <a href="#products" class="px-3 py-2 text-sm font-medium text-white/80 hover:text-gold-400 transition-colors duration-200 gold-underline">Products</a>
+                    <a href="#industries" class="px-3 py-2 text-sm font-medium text-white/80 hover:text-gold-400 transition-colors duration-200 gold-underline">Industries</a>
+                    <a href="#clients" class="px-3 py-2 text-sm font-medium text-white/80 hover:text-gold-400 transition-colors duration-200 gold-underline">Clients</a>
+                    <a href="#contact" class="px-3 py-2 text-sm font-medium text-white/80 hover:text-gold-400 transition-colors duration-200 gold-underline">Contact</a>
+                </div>
+
+                <!-- Desktop CTA -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="#contact" class="px-5 py-2.5 text-sm font-semibold text-navy-900 bg-gold-400 hover:bg-gold-300 rounded-lg transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-gold-500/25 active:scale-95">
+                        Request a Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden relative w-10 h-10 flex items-center justify-center text-white focus:outline-none z-50" aria-label="Toggle menu">
+                    <div class="w-6 flex flex-col gap-1.5 transition-all duration-300">
+                        <span class="block h-0.5 w-6 bg-white rounded-full transition-all duration-300 origin-center" id="bar1"></span>
+                        <span class="block h-0.5 w-6 bg-white rounded-full transition-all duration-300" id="bar2"></span>
+                        <span class="block h-0.5 w-6 bg-white rounded-full transition-all duration-300 origin-center" id="bar3"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu" class="mobile-menu fixed inset-0 z-40 bg-navy-900/98 backdrop-blur-xl lg:hidden flex flex-col pt-24 pb-8 px-6">
+            <div class="flex flex-col gap-2 items-center text-center">
+                <a href="#home" class="mobile-link w-full py-4 text-lg font-semibold text-white/90 hover:text-gold-400 border-b border-white/5 transition-colors">Home</a>
+                <a href="#about" class="mobile-link w-full py-4 text-lg font-semibold text-white/90 hover:text-gold-400 border-b border-white/5 transition-colors">About</a>
+                <a href="#products" class="mobile-link w-full py-4 text-lg font-semibold text-white/90 hover:text-gold-400 border-b border-white/5 transition-colors">Products</a>
+                <a href="#industries" class="mobile-link w-full py-4 text-lg font-semibold text-white/90 hover:text-gold-400 border-b border-white/5 transition-colors">Industries</a>
+                <a href="#clients" class="mobile-link w-full py-4 text-lg font-semibold text-white/90 hover:text-gold-400 border-b border-white/5 transition-colors">Clients</a>
+                <a href="#contact" class="mobile-link w-full py-4 text-lg font-semibold text-white/90 hover:text-gold-400 border-b border-white/5 transition-colors">Contact</a>
+                <a href="#contact" class="mt-6 w-full py-4 text-lg font-bold text-navy-900 bg-gold-400 hover:bg-gold-300 rounded-xl transition-all shadow-lg">
+                    Request a Quote
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden bg-navy-900">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 hero-pattern dot-grid"></div>
+        <!-- Hero background image overlay -->
+        <div class="absolute inset-0 opacity-[0.06]">
+            <img src="https://picsum.photos/seed/government-building/1920/1080" alt="" class="w-full h-full object-cover" loading="eager" aria-hidden="true">
+        </div>
+        <!-- Animated gradient orbs -->
+        <div class="absolute top-1/4 -left-32 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 -right-32 w-80 h-80 bg-gold-400/8 rounded-full blur-3xl animate-float-delayed"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-navy-700/20 rounded-full blur-3xl"></div>
+
+        <!-- Decorative lines -->
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-gold-500/10 border border-gold-500/20 rounded-full mb-6 badge-pulse">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="text-gold-400 text-sm font-semibold tracking-wide">Registered GeM Marketplace Supplier</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-6">
+                        Your Trusted Partner for
+                        <span class="text-gradient font-display italic">Government Procurement</span>
+                        & Supply Solutions
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                        Since 2015, Jaagrav Traders has been helping government institutions, educational organizations, research centers, and public sector entities procure high-quality products through efficient and reliable supply solutions.
+                    </p>
+
+                    <!-- Stats Row -->
+                    <div class="flex flex-wrap gap-6 justify-center lg:justify-start mb-8">
+                        <div class="text-center">
+                            <span class="block text-3xl font-extrabold text-gold-400 counter" data-target="5000">0</span>
+                            <span class="text-sm text-gray-400">Orders Delivered</span>
+                        </div>
+                        <div class="w-px bg-white/10 hidden sm:block"></div>
+                        <div class="text-center">
+                            <span class="block text-3xl font-extrabold text-gold-400">10+</span>
+                            <span class="text-sm text-gray-400">Years Experience</span>
+                        </div>
+                        <div class="w-px bg-white/10 hidden sm:block"></div>
+                        <div class="text-center">
+                            <span class="block text-3xl font-extrabold text-gold-400">500+</span>
+                            <span class="text-sm text-gray-400">Institutional Clients</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-navy-900 bg-gold-400 hover:bg-gold-300 rounded-xl transition-all duration-300 shadow-xl shadow-gold-500/20 hover:shadow-2xl hover:shadow-gold-500/30 active:scale-95 group">
+                            Contact Us
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="#about" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border-2 border-white/20 hover:border-gold-400/60 hover:text-gold-400 rounded-xl transition-all duration-300 active:scale-95">
+                            Learn More
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual - Enhanced with image -->
+                <div class="hidden lg:flex justify-center relative">
+                    <div class="relative w-full max-w-md aspect-square">
+                        <!-- Decorative card stack -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-gold-400/20 to-gold-600/10 rounded-3xl rotate-6 transform scale-95"></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-navy-700 to-navy-800 rounded-3xl -rotate-3 transform scale-95 border border-white/5 shadow-2xl"></div>
+                        <div class="absolute inset-0 bg-navy-800 rounded-3xl border border-white/10 shadow-2xl overflow-hidden img-hover-zoom">
+                            <!-- Hero visual image -->
+                            <img src="https://images.unsplash.com/photo-1760872645554-e163fcf2c338?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Government supply chain and procurement" class="w-full h-full object-cover opacity-80" loading="eager">
+                            <!-- Overlay content -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/30 to-transparent flex items-end justify-center p-8">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-gold-500/30 glow-gold">
+                                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-white font-bold text-lg">Trusted Quality</p>
+                                    <p class="text-gray-300 text-sm">Government Procurement Excellence</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+            <span class="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
+            <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
+    </section>
+
+    <!-- ==================== STATISTICS SECTION ==================== -->
+    <section class="relative bg-white py-16 lg:py-20 -mt-1 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
+                <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-warm-50 to-white border border-gray-100 shadow-sm card-hover fade-in-up">
+                    <span class="block text-4xl lg:text-5xl font-extrabold text-navy-800 counter" data-target="5000">0</span>
+                    <span class="text-sm text-gray-500 font-medium mt-2 block">Orders Delivered</span>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-warm-50 to-white border border-gray-100 shadow-sm card-hover fade-in-up delay-100">
+                    <span class="block text-4xl lg:text-5xl font-extrabold text-navy-800">10+</span>
+                    <span class="text-sm text-gray-500 font-medium mt-2 block">Years Experience</span>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-warm-50 to-white border border-gray-100 shadow-sm card-hover fade-in-up delay-200">
+                    <span class="block text-4xl lg:text-5xl font-extrabold text-navy-800">35+</span>
+                    <span class="text-sm text-gray-500 font-medium mt-2 block">Product Categories</span>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-warm-50 to-white border border-gray-100 shadow-sm card-hover fade-in-up delay-300">
+                    <span class="block text-4xl lg:text-5xl font-extrabold text-navy-800">100+</span>
+                    <span class="text-sm text-gray-500 font-medium mt-2 block">Brand Partnerships</span>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-gradient-to-b from-warm-50 to-white border border-gray-100 shadow-sm card-hover fade-in-up delay-400 col-span-2 md:col-span-1">
+                    <span class="block text-4xl lg:text-5xl font-extrabold text-navy-800">500+</span>
+                    <span class="text-sm text-gray-500 font-medium mt-2 block">Institutional Clients</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY CHOOSE US ==================== -->
+    <section id="about" class="relative bg-gray-50/50 py-20 lg:py-28">
+        <!-- Subtle background image -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+            <img src="https://picsum.photos/seed/warehouse/1920/1080" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">Why Choose Us</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Delivering Excellence Since 2015</h2>
+                <p class="text-gray-600 text-lg leading-relaxed">We provide a comprehensive range of products and procurement solutions under one roof, helping government organizations streamline purchasing processes while ensuring quality, reliability, and timely delivery.</p>
+            </div>
+
+            <!-- Strengths Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm card-hover fade-in-up group">
+                    <div class="w-14 h-14 bg-gold-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold-100 transition-colors">
+                        <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-3">Extensive Product Range</h3>
+                    <p class="text-gray-600">From stationery and furniture to electronics and infrastructure materials — all under one roof.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm card-hover fade-in-up delay-100 group">
+                    <div class="w-14 h-14 bg-gold-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold-100 transition-colors">
+                        <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-3">Government Procurement Expertise</h3>
+                    <p class="text-gray-600">Years of experience fulfilling institutional and government requirements with compliance.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm card-hover fade-in-up delay-200 group">
+                    <div class="w-14 h-14 bg-gold-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold-100 transition-colors">
+                        <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-3">Quality Assurance</h3>
+                    <p class="text-gray-600">Partnerships with leading brands and manufacturers ensuring top-quality standards.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm card-hover fade-in-up delay-300 group">
+                    <div class="w-14 h-14 bg-gold-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold-100 transition-colors">
+                        <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-3">Timely Delivery</h3>
+                    <p class="text-gray-600">Efficient logistics and order management ensuring pan-India timely deliveries.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm card-hover fade-in-up delay-400 group">
+                    <div class="w-14 h-14 bg-gold-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold-100 transition-colors">
+                        <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-3">Competitive Pricing</h3>
+                    <p class="text-gray-600">Cost-effective solutions without compromising on product quality or service.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm card-hover fade-in-up delay-500 group">
+                    <div class="w-14 h-14 bg-gold-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold-100 transition-colors">
+                        <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-3">Customer-Centric Approach</h3>
+                    <p class="text-gray-600">Dedicated support from enquiry to delivery with personalized attention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GEM MARKETPLACE HIGHLIGHT ==================== -->
+    <section class="relative bg-navy-800 py-16 lg:py-20 overflow-hidden">
+        <div class="absolute inset-0 dot-grid"></div>
+        <!-- Subtle background image -->
+        <div class="absolute inset-0 opacity-[0.04]">
+            <img src="https://picsum.photos/seed/parliament/1920/1080" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+        </div>
+        <div class="absolute top-0 right-0 w-72 h-72 bg-gold-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gold-400/3 rounded-full blur-3xl"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up">
+                    <span class="text-gold-400 font-semibold text-sm tracking-[0.2em] uppercase">GeM Marketplace</span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-3 mb-5">Registered Government e-Marketplace Supplier</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">We are a proud registered supplier on the Government e-Marketplace (GeM) portal, ensuring transparent, compliant, and efficient procurement for all government organizations.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-gray-200">
+                            <svg class="w-6 h-6 text-gold-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span><strong class="text-white">Registered GeM Supplier</strong> — Fully compliant procurement process</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-200">
+                            <svg class="w-6 h-6 text-gold-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span><strong class="text-white">Transparent Pricing</strong> — Competitive and fair pricing</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-200">
+                            <svg class="w-6 h-6 text-gold-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span><strong class="text-white">Government Procurement Expertise</strong> — Years of institutional experience</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex justify-center fade-in-up delay-200">
+                    <div class="relative w-full max-w-sm aspect-square bg-gradient-to-br from-navy-700 to-navy-800 rounded-3xl border border-white/10 shadow-2xl overflow-hidden img-hover-zoom group">
+                        <!-- GeM visual image -->
+                        <img src="https://picsum.photos/seed/certificate/500/500" alt="GeM certification and government procurement" class="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-500" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center p-10">
+                            <div class="text-center bg-navy-900/70 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                                <div class="w-20 h-20 mx-auto mb-5 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-xl shadow-gold-500/30 glow-gold">
+                                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                </div>
+                                <p class="text-white font-bold text-2xl">GeM Verified</p>
+                                <p class="text-gray-300 mt-2">Government e-Marketplace Registered Supplier</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRODUCT CATEGORIES ==================== -->
+    <section id="products" class="relative bg-white py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">Our Portfolio</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Comprehensive Product Categories</h2>
+                <p class="text-gray-600 text-lg">Everything you need for institutional procurement — from stationery to infrastructure, all from one trusted partner.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
+                <!-- Category Cards -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up group cursor-pointer">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Stationery Solutions</h3>
+                    <p class="text-sm text-gray-500">Premium office supplies, writing instruments, notebooks & more</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-100 group cursor-pointer">
+                    <div class="text-4xl mb-4">🧹</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Housekeeping & Sanitation</h3>
+                    <p class="text-sm text-gray-500">Cleaning equipment, hygiene products & waste management</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-200 group cursor-pointer">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Electrical & Electronics</h3>
+                    <p class="text-sm text-gray-500">Lighting, UPS systems, IT peripherals & accessories</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-300 group cursor-pointer">
+                    <div class="text-4xl mb-4">🏋️</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Sports & Gym Equipment</h3>
+                    <p class="text-sm text-gray-500">Sports goods, fitness equipment & training accessories</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up group cursor-pointer">
+                    <div class="text-4xl mb-4">🪑</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Metal & Steel Furniture</h3>
+                    <p class="text-sm text-gray-500">Office furniture, storage solutions & industrial furniture</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-100 group cursor-pointer">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Home Maintenance</h3>
+                    <p class="text-sm text-gray-500">Maintenance tools, repair supplies & facility management</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-200 group cursor-pointer">
+                    <div class="text-4xl mb-4">🏗️</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Building Materials & Hardware</h3>
+                    <p class="text-sm text-gray-500">Construction materials, paints & industrial hardware</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-300 group cursor-pointer">
+                    <div class="text-4xl mb-4">🏡</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Home Décor & Handloom</h3>
+                    <p class="text-sm text-gray-500">Interior furnishing, blinds & decorative products</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up group cursor-pointer">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Workshop Essentials</h3>
+                    <p class="text-sm text-gray-500">Industrial tools, safety products & operational supplies</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-100 group cursor-pointer">
+                    <div class="text-4xl mb-4">🍽️</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Messware & Kitchenware</h3>
+                    <p class="text-sm text-gray-500">Institutional kitchen equipment & dining products</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-200 group cursor-pointer">
+                    <div class="text-4xl mb-4">🚦</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Traffic Security Equipment</h3>
+                    <p class="text-sm text-gray-500">Safety barriers, traffic control & signage systems</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover fade-in-up delay-300 group cursor-pointer">
+                    <div class="text-4xl mb-4">🖥️</div>
+                    <h3 class="font-bold text-navy-800 mb-2 group-hover:text-gold-600 transition-colors">Digital Interactive Solutions</h3>
+                    <p class="text-sm text-gray-500">Smart displays, interactive panels & digital learning</p>
+                </div>
+            </div>
+
+            <!-- Printing & Branding Highlight -->
+            <div class="mt-10 bg-gradient-to-r from-navy-800 to-navy-700 rounded-3xl p-8 lg:p-10 fade-in-up shadow-xl overflow-hidden relative">
+                <div class="absolute inset-0 opacity-[0.05]">
+                    <img src="https://picsum.photos/seed/printing/800/400" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+                </div>
+                <div class="relative flex flex-col lg:flex-row items-center gap-6 text-center lg:text-left">
+                    <div class="text-5xl">🖨️</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-white mb-2">Printing & Branding Solutions</h3>
+                        <p class="text-gray-300">LED Sign Boards • Flex Printing • Information Boards • Honour Boards • Corporate Standees • Customized Signage • Letterhead Printing • Mementos & Awards • Sublimation Printing • Corporate Gift Printing • Mug & T-Shirt Printing</p>
+                    </div>
+                    <a href="#contact" class="inline-flex items-center px-6 py-3 bg-gold-400 text-navy-900 font-bold rounded-xl hover:bg-gold-300 transition-all shadow-lg whitespace-nowrap active:scale-95">
+                        Inquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROCESS SECTION ==================== -->
+    <section class="relative bg-gray-50/50 py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">How We Work</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Our Procurement Process</h2>
+                <p class="text-gray-600 text-lg">A streamlined approach to ensure smooth and efficient procurement for every client.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="text-center fade-in-up group">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 mb-4 group-hover:border-gold-300 group-hover:shadow-lg transition-all relative">
+                        <span class="text-2xl font-extrabold text-gold-500">1</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800 mb-2">Requirement Discussion</h4>
+                    <p class="text-sm text-gray-500">Understanding your specific needs and specifications</p>
+                </div>
+                <div class="text-center fade-in-up delay-100 group">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 mb-4 group-hover:border-gold-300 group-hover:shadow-lg transition-all relative">
+                        <span class="text-2xl font-extrabold text-gold-500">2</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800 mb-2">Product Selection</h4>
+                    <p class="text-sm text-gray-500">Curating the best products matching your requirements</p>
+                </div>
+                <div class="text-center fade-in-up delay-200 group">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 mb-4 group-hover:border-gold-300 group-hover:shadow-lg transition-all relative">
+                        <span class="text-2xl font-extrabold text-gold-500">3</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800 mb-2">Quotation & Approval</h4>
+                    <p class="text-sm text-gray-500">Transparent pricing and formal approval process</p>
+                </div>
+                <div class="text-center fade-in-up delay-300 group">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 mb-4 group-hover:border-gold-300 group-hover:shadow-lg transition-all relative">
+                        <span class="text-2xl font-extrabold text-gold-500">4</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800 mb-2">Procurement & Quality Check</h4>
+                    <p class="text-sm text-gray-500">Sourcing and rigorous quality verification</p>
+                </div>
+                <div class="text-center fade-in-up delay-400 group">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 mb-4 group-hover:border-gold-300 group-hover:shadow-lg transition-all relative">
+                        <span class="text-2xl font-extrabold text-gold-500">5</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800 mb-2">Delivery & Support</h4>
+                    <p class="text-sm text-gray-500">Timely delivery with ongoing customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== INDUSTRIES WE SERVE ==================== -->
+    <section id="industries" class="relative bg-white py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">Who We Serve</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Industries We Serve</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-navy-800 rounded-2xl p-8 text-center card-hover fade-in-up group img-hover-zoom relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/government/400/300" alt="Government Organizations" class="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500" loading="lazy">
+                    <div class="relative z-10">
+                        <div class="text-5xl mb-4">🏛️</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Government Organizations</h3>
+                        <p class="text-gray-400 text-sm">Ministries, departments, authorities & public institutions</p>
+                    </div>
+                </div>
+                <div class="bg-navy-800 rounded-2xl p-8 text-center card-hover fade-in-up delay-100 group img-hover-zoom relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/education/400/300" alt="Educational Institutions" class="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500" loading="lazy">
+                    <div class="relative z-10">
+                        <div class="text-5xl mb-4">🎓</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Educational Institutions</h3>
+                        <p class="text-gray-400 text-sm">Schools, universities, technical institutes & research centers</p>
+                    </div>
+                </div>
+                <div class="bg-navy-800 rounded-2xl p-8 text-center card-hover fade-in-up delay-200 group img-hover-zoom relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/laboratory/400/300" alt="R&D Organizations" class="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500" loading="lazy">
+                    <div class="relative z-10">
+                        <div class="text-5xl mb-4">🔬</div>
+                        <h3 class="text-xl font-bold text-white mb-3">R&D Organizations</h3>
+                        <p class="text-gray-400 text-sm">Scientific institutions, laboratories & innovation centers</p>
+                    </div>
+                </div>
+                <div class="bg-navy-800 rounded-2xl p-8 text-center card-hover fade-in-up delay-300 group img-hover-zoom relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/industry/400/300" alt="Public Sector Enterprises" class="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500" loading="lazy">
+                    <div class="relative z-10">
+                        <div class="text-5xl mb-4">🏭</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Public Sector Enterprises</h3>
+                        <p class="text-gray-400 text-sm">Supporting procurement for PSU organizations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BRANDS SECTION ==================== -->
+    <section class="relative bg-gray-50/50 py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">Our Partners</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Brands We Work With</h2>
+                <p class="text-gray-600 text-lg">We collaborate with industry-leading brands to ensure the highest quality standards.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up">Philips</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-100">V-Guard</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-200">Cello</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-300">Doms</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up">Navneet</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-100">Borosil</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-200">Kent</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-300">Crompton</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up">Kirloskar</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-100">RR Kabel</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-200">Nilkamal</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-300">Raymond</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up">Exide</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-100">LG</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-200">Acer</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-300">Canon</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up">Logitech</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-100">Asian Paints</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-200">UltraTech Cement</span>
+                <span class="bg-white rounded-xl px-6 py-5 text-center font-bold text-navy-700 shadow-sm border border-gray-100 card-hover fade-in-up delay-300">Tata Tiscon</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CLIENTS SECTION ==================== -->
+    <section id="clients" class="relative bg-white py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">Our Clients</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Trusted by Leading Institutions</h2>
+                <p class="text-gray-600 text-lg">Over the years, Jaagrav Traders has successfully served numerous prestigious organizations across India.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up">National Institute of Design</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-100">Airports Authority of India</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-200">Sports Authority of India</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-300">Indian Council of Medical Research</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up">BPCL</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-100">Department of Telecommunications</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-200">Food Corporation of India</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-300">NIFT</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up">MANIT Bhopal</div>
+                <div class="bg-gray-50 rounded-xl p-5 text-center text-sm font-semibold text-navy-700 border border-gray-100 card-hover fade-in-up delay-100">Central Institute of Agricultural Engineering</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TEAM SECTION (Enhanced with Images) ==================== -->
+    <section class="relative bg-gray-50/50 py-20 lg:py-28 overflow-hidden">
+        <!-- Subtle background -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+            <img src="https://picsum.photos/seed/teamwork/1920/1080" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-500 font-semibold text-sm tracking-[0.2em] uppercase">Our Team</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 mt-3 mb-5">Meet Our Leadership</h2>
+                <p class="text-gray-600 text-lg">Our team comprises experienced professionals dedicated to delivering exceptional service and building long-term client relationships.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <!-- Team Member 1 - With Image -->
+                <div class="bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-md card-hover fade-in-up group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold-400 to-gold-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    <div class="w-24 h-24 mx-auto mb-5 rounded-full overflow-hidden shadow-lg ring-4 ring-gold-100 group-hover:ring-gold-300 transition-all duration-300 img-hover-zoom">
+                        <img src="https://ui-avatars.com/api/?name=Kamal+Raichandani&size=200&background=1a3a5c&color=ddb44a&bold=true&format=png" alt="Kamal Raichandani - Sales Enquiries" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-navy-700 flex items-center justify-center text-3xl font-extrabold text-gold-400\'>KR</div>';">
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800">Kamal Raichandani</h3>
+                    <p class="text-gold-500 font-medium mb-1">Sales Enquiries</p>
+                    <a href="tel:+919630711811" class="inline-flex items-center gap-2 text-navy-600 hover:text-gold-600 transition-colors mt-2 font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        +91 9630711811
+                    </a>
+                </div>
+                <!-- Team Member 2 - With Image -->
+                <div class="bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-md card-hover fade-in-up delay-200 group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold-400 to-gold-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    <div class="w-24 h-24 mx-auto mb-5 rounded-full overflow-hidden shadow-lg ring-4 ring-gold-100 group-hover:ring-gold-300 transition-all duration-300 img-hover-zoom">
+                        <img src="https://ui-avatars.com/api/?name=Monika+Sabhnani&size=200&background=1a3a5c&color=ddb44a&bold=true&format=png" alt="Monika Sabhnani - Sales Head" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-navy-700 flex items-center justify-center text-3xl font-extrabold text-gold-400\'>MS</div>';">
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800">Monika Sabhnani</h3>
+                    <p class="text-gold-500 font-medium mb-1">Sales Head</p>
+                    <a href="tel:+919109767706" class="inline-flex items-center gap-2 text-navy-600 hover:text-gold-600 transition-colors mt-2 font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        +91 9109767706
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION (Form Removed, Image Added) ==================== -->
+    <section id="contact" class="relative bg-navy-900 py-20 lg:py-28 overflow-hidden">
+        <div class="absolute inset-0 dot-grid"></div>
+        <div class="absolute top-1/3 -right-32 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -left-32 w-80 h-80 bg-gold-400/3 rounded-full blur-3xl"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-gold-400 font-semibold text-sm tracking-[0.2em] uppercase">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-3 mb-5">Contact Jaagrav Traders</h2>
+                <p class="text-gray-400 text-lg">Ready to partner with us? Reach out today — we're here to help with all your procurement needs.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
+                <!-- Contact Image -->
+                <div class="fade-in-up rounded-3xl overflow-hidden shadow-2xl border border-white/10 img-hover-zoom h-80 lg:h-[450px]">
+                    <img src="https://picsum.photos/seed/storefront/600/500" alt="Jaagrav Traders office - Bhopal" class="w-full h-full object-cover" loading="lazy">
+                </div>
+
+                <!-- Contact Info Cards -->
+                <div class="fade-in-up delay-200 space-y-6">
+                    <div class="bg-navy-800 rounded-2xl p-6 border border-white/10 shadow-xl card-hover group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-gold-500/20 transition-colors">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Visit Us</h4>
+                                <p class="text-gray-400">Shop No. 8, R R Complex<br>Airport Road<br>Bhopal – 462030</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-navy-800 rounded-2xl p-6 border border-white/10 shadow-xl card-hover group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-gold-500/20 transition-colors">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Call Us</h4>
+                                <a href="tel:07554005791" class="text-gray-400 hover:text-gold-400 transition-colors">0755-4005791</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-navy-800 rounded-2xl p-6 border border-white/10 shadow-xl card-hover group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-gold-500/20 transition-colors">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Email Us</h4>
+                                <a href="mailto:info.jaagravtraders@gmail.com" class="text-gray-400 hover:text-gold-400 transition-colors break-all">info.jaagravtraders@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CTA -->
+                    <a href="tel:+919630711811" class="block w-full text-center py-4 bg-gold-400 hover:bg-gold-300 text-navy-900 font-bold rounded-xl transition-all shadow-xl hover:shadow-2xl hover:shadow-gold-500/25 active:scale-95">
+                        <span class="flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            Call for Immediate Inquiry
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-navy-950 py-12 lg:py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-10 mb-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <span class="text-white font-extrabold text-lg font-display">JT</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">JAAGRAV TRADERS</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">Your trusted partner for government procurement and multi-category supply solutions since 2015.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="#home" class="text-gray-400 hover:text-gold-400 text-sm transition-colors">Home</a>
+                        <a href="#about" class="text-gray-400 hover:text-gold-400 text-sm transition-colors">About</a>
+                        <a href="#products" class="text-gray-400 hover:text-gold-400 text-sm transition-colors">Products</a>
+                        <a href="#industries" class="text-gray-400 hover:text-gold-400 text-sm transition-colors">Industries</a>
+                        <a href="#clients" class="text-gray-400 hover:text-gold-400 text-sm transition-colors">Clients</a>
+                        <a href="#contact" class="text-gray-400 hover:text-gold-400 text-sm transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact Info</h4>
+                    <p class="text-gray-400 text-sm">Shop No. 8, R R Complex, Airport Road, Bhopal – 462030</p>
+                    <p class="text-gray-400 text-sm mt-2">Phone: 0755-4005791</p>
+                    <p class="text-gray-400 text-sm mt-2">Email: info.jaagravtraders@gmail.com</p>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2025 Jaagrav Traders. All rights reserved. | Registered GeM Marketplace Supplier</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== BACK TO TOP BUTTON ==================== -->
+    <button id="backToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gold-500 hover:bg-gold-400 text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none active:scale-90" aria-label="Back to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // === Mobile Menu Toggle ===
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const bar1 = document.getElementById('bar1');
+        const bar2 = document.getElementById('bar2');
+        const bar3 = document.getElementById('bar3');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let menuOpen = false;
+
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('active', menuOpen);
+            if (menuOpen) {
+                bar1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                bar1.style.transform = 'none';
+                bar2.style.opacity = '1';
+                bar3.style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (menuOpen) toggleMenu();
+            });
+        });
+
+        // === Navbar Scroll Effect ===
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                navbar.style.backgroundColor = 'rgba(10, 25, 41, 0.97)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(10, 25, 41, 0.95)';
+                navbar.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+            }
+        });
+
+        // === Back to Top Button ===
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 600) {
+                backToTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                backToTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'translate-y-0');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // === Counter Animation ===
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    function updateCounter() {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current).toLocaleString() + '+';
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target.toLocaleString() + '+';
+                        }
+                    }
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // === Fade In Up Animation on Scroll ===
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // === Smooth scroll for all anchor links ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: position, behavior: 'smooth' });
+                }
+            });
+        });
+
+        console.log('%c🏛️ Jaagrav Traders %c| Government Procurement Solutions',
+            'font-size:1.2em; font-weight:bold; color:#c8963e;',
+            'color:#666;');
+        console.log('%cRegistered GeM Supplier | Serving India Since 2015',
+            'color:#888; font-style:italic;');
+    </script>
+</body>
+</html>
