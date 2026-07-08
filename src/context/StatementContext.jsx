@@ -7,7 +7,7 @@ export function StatementProvider({ children }) {
   const [statement, setStatementState] = useState({
     template: '',
     periodMonths: 3,
-    employmentType: 'salaried',        // new
+    employmentType: 'salaried',
     salary: 30000,
     salaryCompanyName: '',
     openingBalance: 5000,
@@ -16,13 +16,11 @@ export function StatementProvider({ children }) {
     minTxMonth: 5,
     maxTxMonth: 15,
     transactions: [],
-    // Manual summary fields (when provided, auto‑generation is skipped)
     manualDrCount: null,
     manualCrCount: null,
     manualTotalDebits: null,
     manualTotalCredits: null,
     details: {
-      // Account Holder
       title: '',
       fullName: '',
       email: '',
@@ -31,29 +29,21 @@ export function StatementProvider({ children }) {
       city: '',
       state: '',
       pincode: '',
-
-      // Bank Account
       accountNumber: '',
       ifsc: '',
       accountType: '',
       accountStatus: 'OPEN',
       accountOpenDate: '',
-
-      // Bank & Branch
       branchName: '',
       branchLocation: '',
       branchAddress: '',
       branchPhoneNo: '',
       branchEmail: '',
-
-      // Additional
       micr: '',
       customerRelNo: '',
       ckycr: 'Not Available',
       nomineeName: '',
       pan: '',
-
-      // Statement specific
       startingBalance: 0,
       currency: 'INR',
       password: '',

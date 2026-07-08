@@ -1,13 +1,13 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useStatement } from '../context/StatementContext';
 import { uploadOcr } from '../api/ocrApi';
 import { generatePdf } from '../api/pdfApi';
-import { generateTransactions } from '../utils/transactionGenerator';
-import { BANK_FIELD_CONFIG, FIELD_LABELS, STATEMENT_INFO_FIELDS } from '../config/bankFieldConfig';
 import PdfViewer from '../components/PdfViewer';
 import TransactionTable from '../components/TransactionTable';
+import { generateTransactions } from '../utils/transactionGenerator';
 
+// ==================== UI COMPONENTS ====================
 const Card = ({ children, className = '' }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -60,8 +60,9 @@ const Select = ({ label, value, onChange, options, placeholder, disabled }) => (
   </div>
 );
 
+// ==================== STATEMENT WIZARD ====================
 export default function StatementWizard() {
-  const { step, statement, updateStatement, updateDetails } = useStatement();
+  const { statement, updateStatement, updateDetails } = useStatement();
 
   const [activeTab, setActiveTab] = useState('home');
   const [ocrLoading, setOcrLoading] = useState(false);
@@ -98,11 +99,6 @@ export default function StatementWizard() {
       updateStatement({ salary: 0, salaryCompanyName: '' });
     }
   }, [statement.employmentType, updateStatement]);
-
-  const visibleFields = useMemo(() => {
-    const config = BANK_FIELD_CONFIG[statement.template];
-    return config ? config.fields : [];
-  }, [statement.template]);
 
   const handleFileUpload = async (file) => {
     setOcrLoading(true);
@@ -195,22 +191,15 @@ export default function StatementWizard() {
         salary: statement.salary,
         openingBalance: statement.openingBalance,
         endBalance: statement.endBalance,
-        fixedDebitPercent: statement.fixedDebitPercent,
         salaryCompanyName: statement.salaryCompanyName,
         minTxMonth: statement.minTxMonth,
         maxTxMonth: statement.maxTxMonth,
         periodMonths: statement.periodMonths,
         startDate,
         endDate,
-        bank: statement.template,
-        branchCode: statement.details.ifsc.substring(6),
-        branchName: statement.details.branchName,
-        branchLocation: statement.details.branchLocation || '',
         employmentType: statement.employmentType,
-        manualDrCount: statement.manualDrCount,
-        manualCrCount: statement.manualCrCount,
-        manualTotalDebits: statement.manualTotalDebits,
-        manualTotalCredits: statement.manualTotalCredits,
+        bank: statement.template,
+        details: statement.details,
       });
       updateStatement({ transactions: txns });
       if (txns.length === 0) alert('No transactions generated.');
@@ -220,6 +209,17 @@ export default function StatementWizard() {
   };
 
   const handlePreviewPdf = async () => {
+    // ===== NEW PRE‑VALIDATION =====
+    if (!statement.details.fullName || !statement.details.accountNumber || !statement.details.ifsc) {
+      alert('Please fill in Full Name, Account Number and IFSC.');
+      return;
+    }
+    if (!statement.transactions.length) {
+      alert('No transactions to export. Generate or enter them manually first.');
+      return;
+    }
+    // ==============================
+
     setPdfLoading(true);
     try {
       const toIsoDate = (dateStr) => dateStr ? new Date(dateStr + 'T00:00:00').toISOString() : new Date().toISOString();
@@ -254,7 +254,6 @@ export default function StatementWizard() {
         password: statement.meta.password || '',
       };
 
-      // Lock PDF password logic
       if (lockPdf) {
         const bank = statement.template.toUpperCase();
         if (bank.startsWith('SBI')) {
@@ -267,7 +266,6 @@ export default function StatementWizard() {
       }
 
       const stmt = { id: 'frontend-generated', details, meta, transactions: statement.transactions || [] };
-
       const { blob, filename } = await generatePdf(stmt);
       setPdfBlob(blob);
       setPdfFilename(filename);
@@ -284,7 +282,6 @@ export default function StatementWizard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-blue-50 to-rose-50 text-gray-800 font-sans pb-8">
-      {/* Header */}
       <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-orange-100">
         <div className="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
           <h1 className="text-lg font-bold bg-gradient-to-r from-orange-500 via-red-500 to-blue-600 bg-clip-text text-transparent">
@@ -382,52 +379,50 @@ export default function StatementWizard() {
                   <h3 className="text-lg font-semibold text-gray-800 mt-8 mb-4">Bank Account & Branch</h3>
                   <Input label="Account Number" value={statement.details.accountNumber} onChange={val => updateDetails('accountNumber', val)} required />
                   <Input label="IFSC" value={statement.details.ifsc} onChange={val => updateDetails('ifsc', val)} required />
-                  {visibleFields.includes('branchName') && <Input label="Branch Name" value={statement.details.branchName} onChange={val => updateDetails('branchName', val)} />}
-                  {visibleFields.includes('branchLocation') && <Input label="Branch Location" value={statement.details.branchLocation} onChange={val => updateDetails('branchLocation', val)} />}
-                  {visibleFields.includes('branchAddress') && <Input label="Branch Address" value={statement.details.branchAddress} onChange={val => updateDetails('branchAddress', val)} />}
-                  {visibleFields.includes('branchPhoneNo') && <Input label="Branch Phone" type="tel" value={statement.details.branchPhoneNo} onChange={val => updateDetails('branchPhoneNo', val)} />}
+                  <Input label="Branch Name" value={statement.details.branchName} onChange={val => updateDetails('branchName', val)} />
+                  <Input label="Branch Location" value={statement.details.branchLocation} onChange={val => updateDetails('branchLocation', val)} />
+                  <Input label="Branch Address" value={statement.details.branchAddress} onChange={val => updateDetails('branchAddress', val)} />
+                  <Input label="Branch Phone" type="tel" value={statement.details.branchPhoneNo} onChange={val => updateDetails('branchPhoneNo', val)} />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mt-0 md:mt-8 mb-4">Additional Details</h3>
                   <div className="grid grid-cols-2 gap-4">
-                    {visibleFields.includes('accountType') && <Input label="Account Type" value={statement.details.accountType} onChange={val => updateDetails('accountType', val)} />}
+                    <Input label="Account Type" value={statement.details.accountType} onChange={val => updateDetails('accountType', val)} />
                     <Input label="Status" value="OPEN" readOnly />
-                    {visibleFields.includes('accountOpenDate') && <Input label="Account Open Date" type="date" value={statement.details.accountOpenDate} onChange={val => updateDetails('accountOpenDate', val)} />}
-                    {visibleFields.includes('customerRelNo') && <Input label="CIF Number" value={statement.details.customerRelNo} onChange={val => updateDetails('customerRelNo', val)} />}
-                    {visibleFields.includes('ckycr') && <Input label="CKYCR Number" value={statement.details.ckycr} onChange={val => updateDetails('ckycr', val)} />}
-                    {visibleFields.includes('nomineeName') && <Input label="Nominee Name" value={statement.details.nomineeName} onChange={val => updateDetails('nomineeName', val)} />}
+                    <Input label="Account Open Date" type="date" value={statement.details.accountOpenDate} onChange={val => updateDetails('accountOpenDate', val)} />
+                    <Input label="CIF Number" value={statement.details.customerRelNo} onChange={val => updateDetails('customerRelNo', val)} />
+                    <Input label="CKYCR Number" value={statement.details.ckycr} onChange={val => updateDetails('ckycr', val)} />
+                    <Input label="Nominee Name" value={statement.details.nomineeName} onChange={val => updateDetails('nomineeName', val)} />
                     <Input label="Currency" value="INR" readOnly />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mt-8 mb-4">Statement Info</h3>
                   <div className="grid grid-cols-2 gap-4">
-                    <Input label="Clear Balance" type="number" value={statement.openingBalance} onChange={val => { updateStatement({ openingBalance: Number(val) }); updateDetails('startingBalance', Number(val)); }} />
-                    {STATEMENT_INFO_FIELDS.map(field => (
-                      <Input key={field.field} label={field.label} type={field.type} readOnly={field.readOnly} defaultValue={field.defaultValue} />
-                    ))}
+                    {/* ===== CORRECTED: Target Closing Balance field ===== */}
+                    <Input
+                      label="Target Closing Balance"
+                      type="number"
+                      value={statement.endBalance}
+                      onChange={val => updateStatement({ endBalance: Number(val) })}
+                    />
+                    <Input
+                      label="Opening Balance"
+                      type="number"
+                      value={statement.openingBalance}
+                      onChange={val => {
+                        updateStatement({ openingBalance: Number(val) });
+                        updateDetails('startingBalance', Number(val));
+                      }}
+                    />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mt-8 mb-4">Transaction Settings</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <Input label="Monthly Salary" type="number" value={statement.salary} onChange={val => updateStatement({ salary: Number(val) })} disabled={statement.employmentType === 'selfEmployed'} />
-                    <Input label="Opening Balance" type="number" value={statement.openingBalance} onChange={val => updateStatement({ openingBalance: Number(val) })} />
-                    <Input label="Target Closing" type="number" value={statement.endBalance} onChange={val => updateStatement({ endBalance: Number(val) })} />
-                    <Input label="Debit %" type="number" value={statement.fixedDebitPercent} onChange={val => updateStatement({ fixedDebitPercent: Number(val) })} />
                     <Input label="Company Name" value={statement.salaryCompanyName} onChange={val => updateStatement({ salaryCompanyName: val })} disabled={statement.employmentType === 'selfEmployed'} />
                     <Input label="Min Tx/Month" type="number" value={statement.minTxMonth} onChange={val => updateStatement({ minTxMonth: Number(val) })} />
                     <Input label="Max Tx/Month" type="number" value={statement.maxTxMonth} onChange={val => updateStatement({ maxTxMonth: Number(val) })} />
                   </div>
                 </div>
               </div>
-
-              {/* Manual Summary */}
-              <Card className="mt-8">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Manual Summary (optional)</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <Input label="Dr Count" type="number" value={statement.manualDrCount ?? ''} onChange={val => updateStatement({ manualDrCount: val ? Number(val) : null })} placeholder="28" />
-                  <Input label="Cr Count" type="number" value={statement.manualCrCount ?? ''} onChange={val => updateStatement({ manualCrCount: val ? Number(val) : null })} placeholder="11" />
-                  <Input label="Total Debits" type="number" value={statement.manualTotalDebits ?? ''} onChange={val => updateStatement({ manualTotalDebits: val ? Number(val) : null })} placeholder="294801" />
-                  <Input label="Total Credits" type="number" value={statement.manualTotalCredits ?? ''} onChange={val => updateStatement({ manualTotalCredits: val ? Number(val) : null })} placeholder="296280" />
-                </div>
-              </Card>
 
               <button onClick={handleGenerateTransactions} className="mt-8 w-full h-16 bg-gradient-to-r from-orange-500 via-red-500 to-blue-600 hover:from-orange-600 hover:via-red-600 hover:to-blue-700 text-white text-lg font-bold rounded-2xl transition-all hover:-translate-y-0.5 active:scale-[0.98] shadow-lg">
                 Generate Transaction History
@@ -442,40 +437,27 @@ export default function StatementWizard() {
               </Card>
             )}
 
-            {/* Export PDF Card (with lock feature) */}
             <Card>
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Export PDF</h3>
               <div className="flex flex-col gap-4">
-                {/* Lock PDF checkbox */}
                 <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     id="lockPdf"
                     checked={lockPdf}
                     onChange={e => setLockPdf(e.target.checked)}
-                    disabled={
-                      !statement.template.toUpperCase().startsWith('SBI') &&
-                      !statement.template.toUpperCase().startsWith('KOTAK')
-                    }
+                    disabled={!statement.template.toUpperCase().startsWith('SBI') && !statement.template.toUpperCase().startsWith('KOTAK')}
                     className="accent-orange-500 w-4 h-4"
                   />
                   <label htmlFor="lockPdf" className="text-sm text-gray-700">
                     Lock PDF with password{' '}
-                    {statement.template.toUpperCase().startsWith('SBI')
-                      ? '(CIF Number)'
-                      : '(MICR Number)'}
+                    {statement.template.toUpperCase().startsWith('SBI') ? '(CIF Number)' : '(MICR Number)'}
                   </label>
                 </div>
-
-                <button
-                  onClick={handlePreviewPdf}
-                  disabled={pdfLoading}
-                  className="w-full h-14 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-2xl font-semibold disabled:opacity-50 transition-all shadow-md"
-                >
+                <button onClick={handlePreviewPdf} disabled={pdfLoading} className="w-full h-14 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-2xl font-semibold disabled:opacity-50 transition-all shadow-md">
                   {pdfLoading ? 'Generating…' : 'Preview PDF'}
                 </button>
                 <div className="grid grid-cols-2 gap-4">
-                  {/* Download */}
                   <button
                     onClick={() => {
                       if (pdfBlob && pdfFilename) {
@@ -492,7 +474,6 @@ export default function StatementWizard() {
                   >
                     Download PDF
                   </button>
-                  {/* Share */}
                   <button
                     onClick={async () => {
                       if (pdfBlob && pdfFilename && navigator.share) {
