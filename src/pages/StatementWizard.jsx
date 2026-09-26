@@ -148,7 +148,7 @@ const FormSelect = ({ label, value, onChange, options, placeholder, required, di
 );
 
 // ==================== MAIN COMPONENT ====================
-export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
+export default function StatementWizard({ onOpenAdmin }) {
   const { statement, updateStatement, updateDetails } = useStatement();
   const { user, logout, isAdmin } = useAuth();
 
@@ -508,85 +508,6 @@ export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
     }
   };
 
-  const handleOpenCalibrator = async () => {
-    if (!statement.transactions || statement.transactions.length === 0) {
-      if (onOpenCalibrator) onOpenCalibrator(null);
-      return;
-    }
-
-    setPdfLoading(true);
-    try {
-      const toIsoDate = (dateStr) => {
-        if (!dateStr) return new Date().toISOString();
-        if (dateStr.includes('T')) return dateStr;
-        return `${dateStr}T00:00:00Z`;
-      };
-      const details = {
-        title: statement.details.title || '',
-        name: statement.details.fullName || '',
-        fullName: statement.details.fullName || '',
-        accountNumber: statement.details.accountNumber || '',
-        ifsc: statement.details.ifsc || '',
-        startingBalance: statement.details.startingBalance || statement.openingBalance || 0,
-        address: statement.details.address || '',
-        city: statement.details.city || '',
-        state: statement.details.state || '',
-        pincode: statement.details.pincode || '',
-        nomineeName: statement.details.nomineeName || '',
-        branch: statement.details.branchName || statement.details.branch || '',
-        branchLocation: statement.details.branchLocation || '',
-        branchAddress: statement.details.branchAddress || '',
-        phoneNumber: statement.details.phoneNumber || '',
-        email: statement.details.email || '',
-        micr: statement.details.micr || '',
-        branchPhoneNo: statement.details.branchPhoneNo || '',
-        customerRelNo: statement.details.customerRelNo || '0000000',
-        pan: statement.details.pan || '',
-        ckycr: statement.details.ckycr || '',
-        accountType: statement.details.accountType || '',
-        password: statement.details.password || '',
-        branchCode: statement.details.branchCode || '',
-        branchEmail: statement.details.branchEmail || '',
-        crn: statement.details.crn || statement.details.customerRelNo || '',
-        customerType: statement.details.customerType || 'Sole Propertary',
-        companyName: statement.salaryCompanyName || '',
-      };
-      const meta = {
-        ...statement.meta,
-        template: statement.template,
-        statementPeriodStart: toIsoDate(statement.meta.statementPeriodStart),
-        statementPeriodEnd: toIsoDate(statement.meta.statementPeriodEnd),
-        password: '',
-      };
-
-      const currentCompany = (statement.salaryCompanyName || '').toUpperCase().trim();
-      const finalTxns = (statement.transactions || []).map(t => {
-        if (t.type === 'SALARY' && currentCompany) {
-          const desc = t.description || '';
-          if (desc.includes('NEFT*')) {
-            return { ...t, description: desc.replace(/(NEFT\*[^*]+\*[^*]+\*)([^\n]+)/, `$1${currentCompany}`) };
-          }
-          const m = desc.match(/^(NEFT(?:\/INW|-|\s+CR-|\s+[A-Z0-9]+)\s+)(.+)$/i);
-          if (m) {
-            return { ...t, description: `${m[1]}${currentCompany}` };
-          }
-          return { ...t, description: `NEFT ${currentCompany}` };
-        }
-        return t;
-      });
-
-      const stmt = { id: 'frontend-generated', details, meta, transactions: finalTxns };
-      const { blob, filename } = await generatePdf(stmt);
-      setPdfBlob(blob);
-      setPdfFilename(filename);
-      if (onOpenCalibrator) onOpenCalibrator(blob);
-    } catch (err) {
-      if (onOpenCalibrator) onOpenCalibrator(null);
-    } finally {
-      setPdfLoading(false);
-    }
-  };
-
   const banks = GROUPED_BANKS_LIST;
   const currentBankConfig = getBankConfig(statement.template);
 
@@ -645,15 +566,6 @@ export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
                 )}
               </button>
             </div>
-
-            <button
-              onClick={handleOpenCalibrator}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-orange-700 border border-orange-200/80 hover:bg-orange-100/60 transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs"
-              title="Compare statement with original bank template"
-            >
-              <span>🎯</span>
-              <span>Calibrator Studio</span>
-            </button>
 
             {isAdmin && onOpenAdmin && (
               <button
@@ -1302,11 +1214,11 @@ export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                   <button
                     onClick={handlePreviewPdf}
                     disabled={pdfLoading || !statement.transactions?.length}
-                    className="h-13 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl font-bold text-sm transition-all shadow-md shadow-blue-500/20 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                    className="h-13 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl font-bold text-sm transition-all shadow-md shadow-blue-500/20 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {pdfLoading ? (
                       <>
@@ -1319,16 +1231,6 @@ export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
                         <span>Preview PDF</span>
                       </>
                     )}
-                  </button>
-
-                  <button
-                    onClick={handleOpenCalibrator}
-                    disabled={pdfLoading || !statement.transactions?.length}
-                    className="h-13 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-2xl font-bold text-sm transition-all shadow-md shadow-orange-500/20 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
-                    title="Render statement and open directly in Template Calibrator"
-                  >
-                    <span>🎯</span>
-                    <span>Calibrate / Diff</span>
                   </button>
 
                   <button
@@ -1345,7 +1247,7 @@ export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
                       }
                     }}
                     disabled={!statement.transactions?.length}
-                    className="h-13 border-2 border-orange-500 text-orange-600 hover:bg-orange-50 rounded-2xl font-bold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                    className="h-13 border-2 border-orange-500 text-orange-600 hover:bg-orange-50 rounded-2xl font-bold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     <span>⬇️</span>
                     <span>Download PDF</span>
@@ -1362,7 +1264,7 @@ export default function StatementWizard({ onOpenAdmin, onOpenCalibrator }) {
                       }
                     }}
                     disabled={!pdfBlob}
-                    className="h-13 border border-slate-300 text-slate-700 hover:bg-slate-100 rounded-2xl font-bold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                    className="h-13 border border-slate-300 text-slate-700 hover:bg-slate-100 rounded-2xl font-bold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     <span>📤</span>
                     <span>Share PDF</span>
