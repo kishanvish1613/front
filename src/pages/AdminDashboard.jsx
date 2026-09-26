@@ -32,7 +32,7 @@ import {
   Layers
 } from 'lucide-react';
 
-export default function AdminDashboard({ onOpenStudio }) {
+export default function AdminDashboard({ onOpenStudio, onOpenCalibrator }) {
   const { user, logout } = useAuth();
 
   // State
@@ -178,6 +178,15 @@ export default function AdminDashboard({ onOpenStudio }) {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={onOpenCalibrator}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white text-xs font-semibold shadow-md shadow-orange-600/25 transition-all cursor-pointer"
+            title="Launch PDF Template Calibrator & Visual Diff Studio"
+          >
+            <span>🎯</span>
+            <span>Calibrator Studio</span>
+          </button>
+
           <button
             onClick={onOpenStudio}
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-md shadow-indigo-600/25 transition-all cursor-pointer"
@@ -698,4 +707,3 @@ export default function AdminDashboard({ onOpenStudio }) {
     </div>
   );
 }
-
