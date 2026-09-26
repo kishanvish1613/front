@@ -707,3 +707,4 @@ export default function AdminDashboard({ onOpenStudio, onOpenCalibrator }) {
     </div>
   );
 }
+

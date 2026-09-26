@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { StatementProvider } from './context/StatementContext';
 import LoginPage from './pages/LoginPage';
@@ -8,10 +7,10 @@ import StatementWizard from './pages/StatementWizard';
 import TemplateCalibrator from './pages/TemplateCalibrator';
 import { ShieldCheck } from 'lucide-react';
 
-function AppRoutes() {
+function AppContent() {
   const { user, loading, isAuthenticated, isAdmin } = useAuth();
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard' | 'studio' | 'calibrator'
   const [calibratorBlob, setCalibratorBlob] = useState(null);
-  const navigate = useNavigate();
 
   if (loading) {
     return (
@@ -31,90 +30,60 @@ function AppRoutes() {
     return <LoginPage />;
   }
 
+  // Global Calibrator View
+  if (currentView === 'calibrator') {
+    return (
+      <TemplateCalibrator
+        initialGeneratedBlob={calibratorBlob}
+        onBack={() => {
+          setCalibratorBlob(null);
+          setCurrentView(isAdmin ? 'dashboard' : 'studio');
+        }}
+      />
+    );
+  }
+
+  // Logged in as Admin
+  if (isAdmin) {
+    if (currentView === 'studio') {
+      return (
+        <StatementWizard
+          onOpenAdmin={() => setCurrentView('dashboard')}
+          onOpenCalibrator={(blob) => {
+            setCalibratorBlob(blob || null);
+            setCurrentView('calibrator');
+          }}
+        />
+      );
+    }
+    return (
+      <AdminDashboard
+        onOpenStudio={() => setCurrentView('studio')}
+        onOpenCalibrator={() => {
+          setCalibratorBlob(null);
+          setCurrentView('calibrator');
+        }}
+      />
+    );
+  }
+
+  // Logged in as Normal User
   return (
-    <Routes>
-      <Route
-        path="/admin"
-        element={
-          isAdmin ? (
-            <AdminDashboard
-              onOpenStudio={() => navigate('/studio')}
-              onOpenCalibrator={() => navigate('/calibrator')}
-            />
-          ) : (
-            <Navigate to="/studio" replace />
-          )
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          isAdmin ? (
-            <AdminDashboard
-              onOpenStudio={() => navigate('/studio')}
-              onOpenCalibrator={() => navigate('/calibrator')}
-            />
-          ) : (
-            <Navigate to="/studio" replace />
-          )
-        }
-      />
-      <Route
-        path="/studio"
-        element={
-          <StatementWizard
-            onOpenAdmin={() => navigate('/admin')}
-            onOpenCalibrator={(blob) => {
-              setCalibratorBlob(blob || null);
-              navigate('/calibrator');
-            }}
-          />
-        }
-      />
-      <Route
-        path="/generator"
-        element={
-          <StatementWizard
-            onOpenAdmin={() => navigate('/admin')}
-            onOpenCalibrator={(blob) => {
-              setCalibratorBlob(blob || null);
-              navigate('/calibrator');
-            }}
-          />
-        }
-      />
-      <Route
-        path="/calibrator"
-        element={
-          <TemplateCalibrator
-            initialGeneratedBlob={calibratorBlob}
-            onBack={() => {
-              setCalibratorBlob(null);
-              navigate(isAdmin ? '/admin' : '/studio');
-            }}
-          />
-        }
-      />
-      <Route
-        path="/"
-        element={<Navigate to={isAdmin ? '/admin' : '/studio'} replace />}
-      />
-      <Route
-        path="*"
-        element={<Navigate to={isAdmin ? '/admin' : '/studio'} replace />}
-      />
-    </Routes>
+    <StatementWizard
+      onOpenCalibrator={(blob) => {
+        setCalibratorBlob(blob || null);
+        setCurrentView('calibrator');
+      }}
+    />
   );
 }
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <StatementProvider>
-          <AppRoutes />
-        </StatementProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <StatementProvider>
+        <AppContent />
+      </StatementProvider>
+    </AuthProvider>
   );
 }
