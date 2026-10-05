@@ -5,7 +5,7 @@ const StatementContext = createContext(null);
 export function StatementProvider({ children }) {
   const [step, setStep] = useState(1);
   const [statement, setStatementState] = useState({
-    template: '',
+    template: 'SBINEW',
     periodMonths: 3,
     employmentType: 'salaried',
     salary: 30000,

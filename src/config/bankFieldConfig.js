@@ -419,6 +419,28 @@ export const BANK_CONFIGS = {
   }
 };
 
+export const isCurrentAccountTemplate = (templateCode) => {
+  if (!templateCode) return false;
+  const key = templateCode.toUpperCase().trim();
+  const bank = BANKS_LIST.find(b => b.value === key);
+  if (bank) return bank.category === 'current';
+  return ['HDFCCURRENT', 'UNIONBANK', 'BOI', 'AU'].includes(key);
+};
+
+export const getDefaultTemplateForProfile = (profile, currentTemplate) => {
+  const isCurrentTpl = isCurrentAccountTemplate(currentTemplate);
+  if (profile === 'currentAccount') {
+    if (isCurrentTpl && currentTemplate) return currentTemplate.toUpperCase().trim();
+    if (currentTemplate === 'HDFC') return 'HDFCCURRENT';
+    return 'HDFCCURRENT';
+  } else {
+    // salaried or selfEmployed
+    if (!isCurrentTpl && currentTemplate) return currentTemplate.toUpperCase().trim();
+    if (currentTemplate === 'HDFCCURRENT') return 'HDFC';
+    return 'SBINEW';
+  }
+};
+
 export const getBankConfig = (templateCode) => {
   if (!templateCode) return BANK_CONFIGS.SBINEW;
   const key = templateCode.toUpperCase().trim();

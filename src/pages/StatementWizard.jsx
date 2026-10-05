@@ -4,7 +4,13 @@ import { useStatement } from '../context/StatementContext';
 import { uploadOcr } from '../api/ocrApi';
 import { generatePdf } from '../api/pdfApi';
 import { useAuth } from '../context/AuthContext';
-import { BANKS_LIST, GROUPED_BANKS_LIST, getBankConfig } from '../config/bankFieldConfig';
+import { 
+  BANKS_LIST, 
+  GROUPED_BANKS_LIST, 
+  getBankConfig, 
+  isCurrentAccountTemplate, 
+  getDefaultTemplateForProfile 
+} from '../config/bankFieldConfig';
 import PdfViewer from '../components/PdfViewer';
 import TransactionTable from '../components/TransactionTable';
 import { generateTransactions } from '../utils/transactionGenerator';
@@ -197,13 +203,6 @@ export default function StatementWizard({ onOpenAdmin }) {
     }
   }, [statement.meta.statementPeriodStart, statement.periodMonths, statement.meta.statementPeriodEnd, updateStatement]);
 
-  // Clear salary when non-salaried
-  useEffect(() => {
-    if (statement.employmentType === 'selfEmployed' || statement.employmentType === 'currentAccount') {
-      updateStatement({ salary: 0, salaryCompanyName: '' });
-    }
-  }, [statement.employmentType, updateStatement]);
-
   const normalizeDateToYmd = (dateStr) => {
     if (!dateStr) return '';
     dateStr = dateStr.trim();
@@ -279,15 +278,21 @@ export default function StatementWizard({ onOpenAdmin }) {
     if (bankTpl === 'KOTAK') bankTpl = 'KOTAKNEW';
     if (bankTpl === 'SBI') bankTpl = 'SBINEW';
     if (bankTpl === 'UNIONBANK' || bankTpl === 'UNION') bankTpl = 'UNIONBANK';
-    const isCurrentAcc = res.accountType && res.accountType.toLowerCase().includes('current');
-    const isBizPro = res.accountType?.toLowerCase().includes('biz pro') || (res.accountType && res.accountType.includes('1482'));
-    if ((bankTpl.startsWith('HDFC') || bankTpl === 'HDFCCURRENT') && (isCurrentAcc || isBizPro)) {
-      bankTpl = 'HDFCCURRENT';
-    }
-    updateStatement({ template: bankTpl });
 
-    if (bankTpl === 'UNIONBANK' || bankTpl === 'HDFCCURRENT' || bankTpl === 'BOI' || bankTpl === 'AU' || isCurrentAcc || isBizPro) {
-      updateStatement({ employmentType: 'currentAccount' });
+    const currentMode = statement.employmentType || 'salaried';
+
+    if (currentMode === 'salaried' || currentMode === 'selfEmployed') {
+      // In Salaried or Self-Employed mode, keep HDFC as classic savings
+      if (bankTpl.startsWith('HDFC') || bankTpl === 'HDFCCURRENT') {
+        bankTpl = 'HDFC';
+      }
+      updateStatement({ template: bankTpl, employmentType: currentMode });
+    } else {
+      // In Current Account mode, use commercial template
+      if (bankTpl.startsWith('HDFC') || bankTpl === 'HDFCCURRENT') {
+        bankTpl = 'HDFCCURRENT';
+      }
+      updateStatement({ template: bankTpl, employmentType: 'currentAccount' });
     }
 
     if (useOcrDates && res.statementPeriodStart && res.statementPeriodEnd) {
@@ -640,10 +645,15 @@ export default function StatementWizard({ onOpenAdmin }) {
                 <div className="mt-8 flex items-center gap-3">
                   <button
                     onClick={() => {
-                      updateStatement({ employmentType: 'salaried' });
+                      const newTemplate = getDefaultTemplateForProfile('salaried', statement.template);
+                      updateStatement({
+                        employmentType: 'salaried',
+                        template: newTemplate,
+                        salary: statement.salary > 0 ? statement.salary : 30000,
+                      });
                       setActiveTab('generate');
                     }}
-                    className="px-6 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-sm font-bold rounded-2xl shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5"
+                    className="px-6 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-sm font-bold rounded-2xl shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5 cursor-pointer"
                   >
                     Open Generator Studio ➔
                   </button>
@@ -690,15 +700,18 @@ export default function StatementWizard({ onOpenAdmin }) {
                   <button
                     key={p.key}
                     onClick={() => {
-                      const isCurrent = p.key === 'currentAccount';
-                      const updates = { employmentType: p.key };
-                      if (isCurrent && statement.template !== 'UNIONBANK' && statement.template !== 'HDFCCURRENT') {
-                        updates.template = 'HDFCCURRENT';
+                      const newTemplate = getDefaultTemplateForProfile(p.key, statement.template);
+                      const updates = { 
+                        employmentType: p.key,
+                        template: newTemplate,
+                      };
+                      if (p.key === 'salaried' && (!statement.salary || statement.salary <= 0)) {
+                        updates.salary = 30000;
                       }
                       updateStatement(updates);
                       setActiveTab('generate');
                     }}
-                    className="bg-white rounded-3xl p-6 text-left border border-slate-200/80 hover:border-orange-500 hover:shadow-xl transition-all group flex flex-col justify-between"
+                    className="bg-white rounded-3xl p-6 text-left border border-slate-200/80 hover:border-orange-500 hover:shadow-xl transition-all group flex flex-col justify-between cursor-pointer"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
@@ -744,14 +757,17 @@ export default function StatementWizard({ onOpenAdmin }) {
                   <button
                     key={opt.key}
                     onClick={() => {
-                      const isCurrent = opt.key === 'currentAccount';
-                      const updates = { employmentType: opt.key };
-                      if (isCurrent && statement.template !== 'UNIONBANK' && statement.template !== 'HDFCCURRENT' && statement.template !== 'BOI') {
-                        updates.template = 'HDFCCURRENT';
+                      const newTemplate = getDefaultTemplateForProfile(opt.key, statement.template);
+                      const updates = {
+                        employmentType: opt.key,
+                        template: newTemplate,
+                      };
+                      if (opt.key === 'salaried' && (!statement.salary || statement.salary <= 0)) {
+                        updates.salary = 30000;
                       }
                       updateStatement(updates);
                     }}
-                    className={`px-5 py-2 rounded-xl text-xs font-bold transition-all ${
+                    className={`px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                       statement.employmentType === opt.key
                         ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20'
                         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
@@ -856,7 +872,19 @@ export default function StatementWizard({ onOpenAdmin }) {
                   <FormSelect
                     label="Bank Template"
                     value={statement.template}
-                    onChange={val => updateStatement({ template: val })}
+                    onChange={val => {
+                      const isCurrent = isCurrentAccountTemplate(val);
+                      const updates = { template: val };
+                      if (isCurrent && statement.employmentType !== 'currentAccount') {
+                        updates.employmentType = 'currentAccount';
+                      } else if (!isCurrent && statement.employmentType === 'currentAccount') {
+                        updates.employmentType = 'salaried';
+                        if (!statement.salary || statement.salary <= 0) {
+                          updates.salary = 30000;
+                        }
+                      }
+                      updateStatement(updates);
+                    }}
                     options={banks}
                     required
                   />
