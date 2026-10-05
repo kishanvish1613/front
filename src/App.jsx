@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { StatementProvider } from './context/StatementContext';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import StatementWizard from './pages/StatementWizard';
-import TemplateCalibrator from './pages/TemplateCalibrator';
 import { ShieldCheck } from 'lucide-react';
 
 function AppRoutes() {
   const { user, loading, isAuthenticated, isAdmin } = useAuth();
-  const [calibratorBlob, setCalibratorBlob] = useState(null);
   const navigate = useNavigate();
 
   if (loading) {
@@ -38,7 +36,6 @@ function AppRoutes() {
           isAdmin ? (
             <AdminDashboard
               onOpenStudio={() => navigate('/studio')}
-              onOpenCalibrator={() => navigate('/calibrator')}
             />
           ) : (
             <Navigate to="/studio" replace />
@@ -51,7 +48,6 @@ function AppRoutes() {
           isAdmin ? (
             <AdminDashboard
               onOpenStudio={() => navigate('/studio')}
-              onOpenCalibrator={() => navigate('/calibrator')}
             />
           ) : (
             <Navigate to="/studio" replace />
@@ -63,10 +59,6 @@ function AppRoutes() {
         element={
           <StatementWizard
             onOpenAdmin={() => navigate('/admin')}
-            onOpenCalibrator={(blob) => {
-              setCalibratorBlob(blob || null);
-              navigate('/calibrator');
-            }}
           />
         }
       />
@@ -75,22 +67,6 @@ function AppRoutes() {
         element={
           <StatementWizard
             onOpenAdmin={() => navigate('/admin')}
-            onOpenCalibrator={(blob) => {
-              setCalibratorBlob(blob || null);
-              navigate('/calibrator');
-            }}
-          />
-        }
-      />
-      <Route
-        path="/calibrator"
-        element={
-          <TemplateCalibrator
-            initialGeneratedBlob={calibratorBlob}
-            onBack={() => {
-              setCalibratorBlob(null);
-              navigate(isAdmin ? '/admin' : '/studio');
-            }}
           />
         }
       />
@@ -117,3 +93,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+

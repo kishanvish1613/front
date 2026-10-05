@@ -166,10 +166,11 @@ export default function StatementWizard({ onOpenAdmin }) {
   const [lockPdf, setLockPdf] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
 
-  // Auto-calculate To Date from Start Date & Period Months
+  // Auto-calculate To Date from Start Date & Period Months (skipped when Custom period is active)
   useEffect(() => {
+    if (statement.periodMonths === 'custom' || statement.periodMonths === 0 || !statement.periodMonths) return;
     const startDate = statement.meta.statementPeriodStart;
-    const months = statement.periodMonths;
+    const months = Number(statement.periodMonths);
     if (startDate && months && !isNaN(new Date(startDate).getTime())) {
       const parts = startDate.split('-').map(Number);
       if (parts.length === 3) {
@@ -364,6 +365,14 @@ export default function StatementWizard({ onOpenAdmin }) {
       return;
     }
     try {
+      const isCustom = statement.periodMonths === 'custom' || !Number(statement.periodMonths);
+      let effectiveMonths = Number(statement.periodMonths);
+      if (isCustom) {
+        const startD = new Date(startDate);
+        const endD = new Date(endDate);
+        const diffDays = Math.max(1, Math.round((endD - startD) / (1000 * 60 * 60 * 24)));
+        effectiveMonths = Math.max(1, Math.round(diffDays / 30.4375));
+      }
       const txns = generateTransactions({
         salary: statement.salary,
         openingBalance: statement.openingBalance,
@@ -371,7 +380,7 @@ export default function StatementWizard({ onOpenAdmin }) {
         salaryCompanyName: statement.salaryCompanyName,
         minTxMonth: statement.minTxMonth,
         maxTxMonth: statement.maxTxMonth,
-        periodMonths: statement.periodMonths,
+        periodMonths: effectiveMonths || 1,
         startDate,
         endDate,
         employmentType: statement.employmentType,
@@ -516,6 +525,7 @@ export default function StatementWizard({ onOpenAdmin }) {
     { value: 3, label: '3 Months (Quarterly)' },
     { value: 6, label: '6 Months (Half-Yearly)' },
     { value: 12, label: '12 Months (Full Financial Year)' },
+    { value: 'custom', label: 'Custom (Custom Date Range)' },
   ];
 
   return (
@@ -855,7 +865,7 @@ export default function StatementWizard({ onOpenAdmin }) {
                     <FormSelect
                       label="Period"
                       value={statement.periodMonths}
-                      onChange={val => updateStatement({ periodMonths: Number(val) })}
+                      onChange={val => updateStatement({ periodMonths: val === 'custom' ? 'custom' : Number(val) })}
                       options={periodOptions}
                     />
                     <FormInput
@@ -870,7 +880,8 @@ export default function StatementWizard({ onOpenAdmin }) {
                       type="date"
                       value={statement.meta.statementPeriodEnd}
                       onChange={val => updateStatement({ meta: { ...statement.meta, statementPeriodEnd: val } })}
-                      helperText="Auto-computed"
+                      helperText={statement.periodMonths === 'custom' ? 'Custom Date Range' : 'Auto-computed'}
+                      required
                     />
                   </div>
                 </SectionCard>

@@ -102,7 +102,14 @@ export function generateTransactions({
   const D_min = MONTHS * minTxMonth * MIN_AVG_DEBIT;
 
   let D = Math.max(0, OPEN_P + totalSalaryCredits - END_P);
-  D = Math.max(D, D_min);
+  if (totalSalaryCredits === 0 && END_P > OPEN_P) {
+    const netGrowth = END_P - OPEN_P;
+    const monthlyGrowth = netGrowth / MONTHS;
+    const realisticMonthlyDebit = Math.max(D_min / MONTHS, Math.round(monthlyGrowth * 1.5), 1500000);
+    D = Math.max(D, realisticMonthlyDebit * MONTHS);
+  } else {
+    D = Math.max(D, D_min);
+  }
 
   let txns = [], businessCredits = [], interestTotal = 0;
   for (let attempt = 0; attempt < 3; attempt++) {

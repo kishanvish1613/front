@@ -85,16 +85,38 @@ export function buildHumanizedBusinessCredits(requiredAmount, days, rng, months,
   const credits = [];
   for (const bucket of monthBuckets) {
     if (bucket.total <= 0 || bucket.days.length === 0) continue;
-    const maxCredits = Math.min(isBusiness ? 15 : 6, bucket.days.length);
-    const numCredits = Math.min(bucket.days.length, rint(isBusiness ? 3 : 2, Math.max(isBusiness ? 3 : 2, maxCredits), rng));
-    const minPer = isBusiness ? Math.min(100000, Math.floor(bucket.total / numCredits)) : 500000;
-    const maxPer = Math.max(minPer, bucket.total - minPer * (numCredits - 1));
-    const amounts = splitVariedAmount(bucket.total, numCredits, minPer, maxPer, rng);
     
-    for (let i = 0; i < numCredits; i++) {
-      const dayIdx = Math.min(bucket.days.length - 1, Math.floor(i * bucket.days.length / numCredits));
-      const txDay = bucket.days[dayIdx];
-      credits.push({ date: txDay, amount: amounts[i], type: 'CREDIT' });
+    if (!isBusiness) {
+      // Personal / savings account: 1-2 realistic major inflows (e.g. primary inflow on 1st-5th, optional secondary on 15th-20th)
+      const numCredits = (bucket.total > 1500000 && rng() < 0.45 && bucket.days.length >= 2) ? 2 : 1;
+      if (numCredits === 1) {
+        // Schedule on one of the first 5 working days of the month
+        const earlyDays = bucket.days.slice(0, Math.min(5, bucket.days.length));
+        const txDay = earlyDays[Math.floor(rng() * earlyDays.length)];
+        credits.push({ date: txDay, amount: forceWholeRupees(bucket.total), type: 'CREDIT' });
+      } else {
+        const p1 = forceWholeRupees(Math.round(bucket.total * (0.65 + rng() * 0.15)));
+        const p2 = bucket.total - p1;
+        const earlyDays = bucket.days.slice(0, Math.min(5, bucket.days.length));
+        const midDays = bucket.days.slice(Math.floor(bucket.days.length * 0.45), Math.floor(bucket.days.length * 0.75));
+        const d1 = earlyDays[Math.floor(rng() * earlyDays.length)];
+        const d2 = (midDays.length > 0) ? midDays[Math.floor(rng() * midDays.length)] : bucket.days[bucket.days.length - 1];
+        credits.push({ date: d1, amount: p1, type: 'CREDIT' });
+        credits.push({ date: d2, amount: p2, type: 'CREDIT' });
+      }
+    } else {
+      // Business account: 3-8 realistic client settlements / vendor payouts
+      const maxCredits = Math.min(12, bucket.days.length);
+      const numCredits = Math.min(bucket.days.length, rint(3, Math.max(3, maxCredits), rng));
+      const minPer = Math.min(100000, Math.floor(bucket.total / numCredits));
+      const maxPer = Math.max(minPer, bucket.total - minPer * (numCredits - 1));
+      const amounts = splitVariedAmount(bucket.total, numCredits, minPer, maxPer, rng);
+      
+      for (let i = 0; i < numCredits; i++) {
+        const dayIdx = Math.min(bucket.days.length - 1, Math.floor(i * bucket.days.length / numCredits));
+        const txDay = bucket.days[dayIdx];
+        credits.push({ date: txDay, amount: amounts[i], type: 'CREDIT' });
+      }
     }
   }
   return credits;
